@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { routes, route, trainsByRoute, classes, schedules } from '../Services'
 
-import { Card, Button, Form, Col, Row, Table } from 'react-bootstrap'
+import { Button, Form, Col, Row, Table } from 'react-bootstrap'
 import Select from 'react-select'
 
 class Home extends Component {
@@ -11,7 +11,9 @@ class Home extends Component {
         this.state = {
             fromOptions: [],
             toOptions: [],
-            trains: []
+            trains: [],
+            errMsg: 'Please fill all the fields!!!',
+            showErr: false,
         };
     }
 
@@ -98,23 +100,33 @@ class Home extends Component {
         if (this.state.to && this.state.from && this.state.trainClass && this.state.qty) {
             var amount = Math.abs(this.state.to.fair - this.state.from.fair) * this.state.trainClass.fairRatio * this.state.qty
             amount = amount.toFixed(2)
-            var discount = (user.discount ? 0.1*amount : 0).toFixed(2)
+            var discount = (user && user.discount ? 0.1 * amount : 0).toFixed(2)
             var total = (amount - discount).toFixed(2)
             this.setState({ amount: amount, discount: discount, total: total })
         }
     }
 
     handleSubmit = event => {
-        //TODO: validate form
+        this.setState({showErr:false})
+        const state = this.state
+        var user = localStorage.getItem('user')
+        if (!user) {
+            alert("Please Sign In Before Make a Reservation!!!")
+            this.props.history.push('/')
+        } else if (state.from && state.to && state.train && state.trainClass && state.time && state.qty) {
+            console.log("submit")
+            this.props.history.push("/payment", { ...this.state })
+        }else{
+            this.setState({showErr:true})
+        }
         event.preventDefault()
         event.stopPropagation()
-        console.log("submit")
-        this.props.history.push("/payment",{...this.state})
+
     }
 
     render() {
         return (
-            <Form style={{ padding: 20 }} onSubmit={(e)=>this.handleSubmit(e)}>
+            <Form style={{ padding: 20 }} onSubmit={(e) => this.handleSubmit(e)}>
                 <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
                     <Form.Row style={{ width: '75%' }}>
                         <Form.Group as={Col} controlId="from">
@@ -171,6 +183,9 @@ class Home extends Component {
                                 </tbody>
                             </Table>
                         }
+                    </Form.Row>
+                    <Form.Row style={{ width: '75%' }}>
+                        {this.state.showErr && <p style={{ color: 'red' }}>{this.state.errMsg}</p>}
                     </Form.Row>
                     <Form.Row style={{ width: '75%', padding: 5 }}>
                         <Button variant="primary" type="submit">
