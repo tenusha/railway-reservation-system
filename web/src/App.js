@@ -11,6 +11,7 @@ import Register from './components/Register'
 import Home from './components/Home'
 import Contact from './components/Contact'
 import Reservations from './components/Reservations'
+import Payment from './components/Payment'
 
 class App extends Component {
   constructor(props, context) {
@@ -86,6 +87,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/contact" component={Contact} />
               <Route path="/reservations" component={Reservations} />
+              <Route path="/payment" component={Payment} />
             </Switch>
           </Suspense>
         </Router>

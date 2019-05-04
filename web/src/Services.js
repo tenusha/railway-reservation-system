@@ -16,6 +16,22 @@ export function route(station) {
     return callGet(baseUrl + '/railway/route/' + station);
 }
 
+export function trains() {
+    return callGet(baseUrl + '/railway/trains/');
+}
+
+export function trainsByRoute(route) {
+    return callGet(baseUrl + '/railway/trains/' + route);
+}
+
+export function classes() {
+    return callGet(baseUrl + '/railway/classes/');
+}
+
+export function schedules() {
+    return callGet(baseUrl + '/railway/schedules/');
+}
+
 const callGet = (url) => {
     return fetch(url).then(handleres);
 }
