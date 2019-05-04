@@ -8,8 +8,12 @@ export function register(body) {
     return callPost(baseUrl + '/register', body);
 }
 
-export function stations() {
-    return callGet(baseUrl + '/railway/stations');
+export function routes() {
+    return callGet(baseUrl + '/railway/routes');
+}
+
+export function route(station) {
+    return callGet(baseUrl + '/railway/route/' + station);
 }
 
 const callGet = (url) => {
@@ -29,9 +33,9 @@ const handleres = (res) => {
         return res.json();
     }
     else {
-        if(res.status===404){
+        if (res.status === 404) {
             return Promise.reject();
-        }else{
+        } else {
             throw res.json();
         }
         // console.log(res)

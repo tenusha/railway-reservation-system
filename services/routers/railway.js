@@ -1,10 +1,19 @@
 const express = require('express')
 const router = express.Router()
-const stationModel = require('../model/station')
+const routeModel = require('../model/route')
 
-router.get('/railway/stations', async (req, res) => {
+router.get('/railway/routes', async (req, res) => {
     try {
-        const result = await stationModel.find()
+        const result = await routeModel.find()
+        res.status(200).json(result)
+    } catch (err) {
+        res.status(500).json(err)
+    }
+});
+
+router.get('/railway/route/:id', async (req, res) => {
+    try {
+        const result = await routeModel.findOne({'_id':req.params.id})
         res.status(200).json(result)
     } catch (err) {
         res.status(500).json(err)

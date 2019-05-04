@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { stations } from '../Services'
+import { routes, route } from '../Services'
 
 import { Modal, Button, Form, Col, Row, Dropdown } from 'react-bootstrap'
 import Select from 'react-select'
@@ -9,18 +9,21 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            options: []
+            fromOptions: [],
+            toOptions: []
         };
     }
 
     componentDidMount() {
         var options = []
-        stations()
+        routes()
             .then(res => {
                 res.map((item, i) => {
-                    options.push({ value: item.name, label: item.name, id: item._id })
+                    item.route.map((station, i) => {
+                        options.push({ value: station.name, label: station.name, route: item._id, id: i, fair: station.fair })
+                    })
                 })
-                this.setState({ options: options })
+                this.setState({ fromOptions: options })
             })
             .catch(err => {
                 console.log(err)
@@ -28,9 +31,23 @@ class Home extends Component {
     }
 
     handleChange = type => selectedOption => {
-        //this.setState({ selectedOption });
-        console.log(type);
-        console.log('Option selected:', selectedOption);
+        this.setState({ [type]: selectedOption }, () => {
+            console.log(this.state)
+
+        });
+        if (type === 'from') {
+            route(selectedOption.route)
+                .then(res => {
+                    var options = [];
+                    res.route.map((station, i) => {
+                        options.push({ value: station.name, label: station.name, route: res._id, id: i, fair: station.fair })
+                    })
+                    this.setState({ toOptions: options })
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
     }
 
     // handleClick = () => {
@@ -39,12 +56,45 @@ class Home extends Component {
 
     render() {
         return (
-            <>
-                <Row style={{ padding: 20 }}>
-                    <Col><Select options={this.state.options} onChange={this.handleChange("from")} /></Col>
-                    <Col><Select options={this.state.options} onChange={this.handleChange("to")} /></Col>
+            <Form style={{ padding: 20 }}>
+                <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <Form.Row style={{ width: '75%' }}>
+                        <Form.Group as={Col} controlId="from">
+                            <Form.Label>From</Form.Label>
+                            <Select options={this.state.fromOptions} onChange={this.handleChange("from")} />
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="to">
+                            <Form.Label>To</Form.Label>
+                            <Select options={this.state.toOptions} onChange={this.handleChange("to")} />
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row style={{ width: '75%' }}>
+                        <Form.Group as={Col} controlId="from">
+                            <Form.Label>Train</Form.Label>
+                            <Select options={this.state.fromOptions} onChange={this.handleChange("from")} />
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="to">
+                            <Form.Label>Class</Form.Label>
+                            <Select options={this.state.toOptions} onChange={this.handleChange("to")} />
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row style={{ width: '75%' }}>
+                        <Form.Group as={Col} controlId="from">
+                            <Form.Label>Time</Form.Label>
+                            <Select options={this.state.fromOptions} onChange={this.handleChange("from")} />
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="formGridEmail">
+                            <Form.Label>No of Tickets</Form.Label>
+                            <Form.Control placeholder="qty" />
+                        </Form.Group>
+                    </Form.Row>
+                    <Form.Row style={{ width: '75%', paddingLeft: 5, align:'right' }}>
+                        <Button variant="primary" type="submit">
+                            Make Reservation
+                        </Button>
+                    </Form.Row>
                 </Row>
-            </>
+            </Form>
         );
     }
 }
