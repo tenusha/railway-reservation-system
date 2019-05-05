@@ -4,6 +4,7 @@ const routeModel = require('../model/route')
 const trainModel = require('../model/train')
 const classModel = require('../model/classes')
 const scheduleModel = require('../model/schedule')
+const reservationModel = require('../model/reservation')
 
 router.get('/railway/routes', async (req, res) => {
     try {
@@ -54,6 +55,35 @@ router.get('/railway/classes', async (req, res) => {
 router.get('/railway/schedules', async (req, res) => {
     try {
         const result = await scheduleModel.find()
+        res.status(200).json(result)
+    } catch (err) {
+        res.status(500).json(err)
+    }
+});
+
+router.post('/railway/reservations', async (req, res) => {
+    try {
+        var reservation = new reservationModel(req.body)
+        var result = await reservation.save()
+        res.status(200).json(result)
+    }
+    catch (err) {
+        res.status(500).json(err)
+    }
+});
+
+router.get('/railway/reservations', async (req, res) => {
+    try {
+        const result = await reservationModel.find()
+        res.status(200).json(result)
+    } catch (err) {
+        res.status(500).json(err)
+    }
+});
+
+router.get('/railway/reservations/:user', async (req, res) => {
+    try {
+        const result = await reservationModel.find({user:req.params.user})
         res.status(200).json(result)
     } catch (err) {
         res.status(500).json(err)

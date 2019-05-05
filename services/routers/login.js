@@ -6,7 +6,6 @@ router.post('/login', (req, res) => {
     const body = req.body
     const username = body.username
     const password = body.password
-    //TODO : check with database
 
     UserModel.findOne({ email: username }, (err, val) => {
         if (err) {

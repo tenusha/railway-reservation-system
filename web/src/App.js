@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'react-toastify/dist/ReactToastify.css'
+import 'react-datepicker/dist/react-datepicker.css'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';

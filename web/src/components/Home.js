@@ -3,6 +3,8 @@ import { routes, route, trainsByRoute, classes, schedules } from '../Services'
 
 import { Button, Form, Col, Row, Table } from 'react-bootstrap'
 import Select from 'react-select'
+import DatePicker from "react-datepicker"
+import moment from 'moment';
 
 class Home extends Component {
 
@@ -22,8 +24,8 @@ class Home extends Component {
         routes()
             .then(res => {
                 res.map((item, i) => {
-                    item.route.map((station, i) => {
-                        options.push({ value: station.name, label: station.name, route: item._id, id: i, fair: station.fair })
+                    return item.route.map((station, i) => {
+                        return options.push({ value: station.name, label: station.name, route: item._id, id: i, fair: station.fair })
                     })
                 })
                 this.setState({ fromOptions: options })
@@ -35,7 +37,7 @@ class Home extends Component {
             .then(res => {
                 var classes = []
                 res.map((trainClass, i) => {
-                    classes.push({ value: trainClass.name, label: trainClass.name, id: trainClass._id, fairRatio: trainClass.fairRatio })
+                    return classes.push({ value: trainClass.name, label: trainClass.name, id: trainClass._id, fairRatio: trainClass.fairRatio })
                 })
                 this.setState({ classes: classes })
             })
@@ -46,7 +48,7 @@ class Home extends Component {
             .then(res => {
                 var schedules = []
                 res.map((schedule, i) => {
-                    schedules.push({ value: schedule.time, label: schedule.time, id: schedule._id })
+                    return schedules.push({ value: schedule.time, label: schedule.time, id: schedule._id })
                 })
                 this.setState({ schedules: schedules })
             })
@@ -67,7 +69,7 @@ class Home extends Component {
                 .then(res => {
                     var options = [];
                     res.route.map((station, i) => {
-                        options.push({ value: station.name, label: station.name, route: res._id, id: i, fair: station.fair })
+                        return options.push({ value: station.name, label: station.name, route: res._id, id: i, fair: station.fair })
                     })
                     this.setState({ toOptions: options })
                 })
@@ -78,7 +80,7 @@ class Home extends Component {
                 .then(res => {
                     var options = [];
                     res.map((train, i) => {
-                        options.push({ value: train.name, label: train.name, id: train._id })
+                        return options.push({ value: train.name, label: train.name, id: train._id })
                     })
                     this.setState({ trains: options })
                 })
@@ -107,21 +109,26 @@ class Home extends Component {
     }
 
     handleSubmit = event => {
-        this.setState({showErr:false})
+        this.setState({ showErr: false })
         const state = this.state
         var user = localStorage.getItem('user')
         if (!user) {
             alert("Please Sign In Before Make a Reservation!!!")
             this.props.history.push('/')
-        } else if (state.from && state.to && state.train && state.trainClass && state.time && state.qty) {
+        } else if (state.from && state.to && state.train && state.trainClass && state.time && state.qty && state.date) {
             console.log("submit")
             this.props.history.push("/payment", { ...this.state })
-        }else{
-            this.setState({showErr:true})
+        } else {
+            this.setState({ showErr: true })
         }
         event.preventDefault()
         event.stopPropagation()
 
+    }
+
+    handleDateChange = dt => {
+        const date = moment(dt).format('YYYY-MM-DD')
+        this.setState({ date: date })
     }
 
     render() {
@@ -158,6 +165,18 @@ class Home extends Component {
                             <Form.Control placeholder="qty" onChange={this.handleQtyChange()} />
                         </Form.Group>
                     </Form.Row>
+                    <Form.Row style={{ width: '75%', paddingBottom: 20 }}>
+                        <Col md={6} lg={6} xl={6}>
+                            <Form.Label>Date</Form.Label>
+                            <DatePicker
+                                className="form-control"
+                                onChange={this.handleDateChange}
+                                minDate={new Date()}
+                                value={this.state.date}
+                                placeholderText="YYYY-MM-DD"
+                            />
+                        </Col>
+                    </Form.Row>
                     <Form.Row style={{ width: '75%', paddingLeft: 5, align: 'right' }}>
                         {this.state.amount &&
                             <Table striped bordered hover size="sm">
@@ -193,7 +212,7 @@ class Home extends Component {
                         </Button>
                     </Form.Row>
                 </Row>
-            </Form>
+            </Form >
         );
     }
 }

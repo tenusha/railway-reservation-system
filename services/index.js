@@ -4,6 +4,7 @@ const app = express();
 const login = require('./routers/login');
 const register = require('./routers/register');
 const railway = require('./routers/railway');
+const payment = require('./routers/payment');
 const mongoose = require('mongoose')
 
 mongoose.connect('mongodb://localhost/railway')
@@ -18,6 +19,7 @@ app.use(function (req, res, next) {
 app.use(login);
 app.use(register);
 app.use(railway);
+app.use(payment);
 
 app.listen(3001, err => {
     if (err) {

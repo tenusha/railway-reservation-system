@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 import { Table, Row, Form, Col, Button } from 'react-bootstrap'
+import { validateCard, validatePhone, makeReservation } from '../Services'
+import { toast } from 'react-toastify';
 
 class Payment extends Component {
 
@@ -9,7 +11,9 @@ class Payment extends Component {
         this.state = {
             checked: 'card',
             errMsg: 'Please fill all the fields!!!',
-            showErr: false,
+            showPaymentErr: false,
+            validateErrMsg: 'Entered data not valid!!!',
+            showValidateErr: false,
             cardNo: '',
             cvc: '',
             exp: '',
@@ -20,14 +24,14 @@ class Payment extends Component {
 
     componentDidMount() {
         if (this.props.location) {
-            this.setState({ ...this.props.location.state, showErr:false })
-        }        
+            this.setState({ ...this.props.location.state })
+        }
     }
 
     componentWillUpdate() {
         var user = localStorage.getItem('user')
         if (!user) {
-            this.props.history.push('/')             
+            this.props.history.push('/')
         }
     }
 
@@ -40,31 +44,79 @@ class Payment extends Component {
         }
     }
 
-    handleSubmit = event => {
+    handleSubmit = async  event => {
         event.preventDefault()
         event.stopPropagation()
-        this.setState({ showErr: false })
+        this.setState({ showPaymentErr: false, showValidateErr: false })
         const state = this.state;
         if (state.checked === 'card') {
             if (state.cardNo && state.cvc && state.exp) {
-                //TODO: gateway
-                console.log("card valid")
+                validateCard({ card: state.cardNo, cvc: state.cvc, exp: state.exp, total: state.total })
+                    .then(res => {
+                        if (res.validated) {
+                            this.makeReservation()
+                        } else {
+                            this.setState({ showValidateErr: true })
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+
             } else {
-                this.setState({ showErr: true })
+                this.setState({ showPaymentErr: true })
             }
         }
         if (state.checked === 'phone') {
             if (state.phoneNo && state.pin) {
-                //TODO: gateway
-                console.log("phone valid")
+                validatePhone({ phone: state.phoneNo, pin: state.pin, total: state.total })
+                    .then(res => {
+                        if (res.validated) {
+                            this.makeReservation()
+                        } else {
+                            this.setState({ showValidateErr: true })
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
             } else {
-                this.setState({ showErr: true })
+                this.setState({ showPaymentErr: true })
             }
         }
     }
 
+    makeReservation = () => {
+        const state = this.state
+        var user = localStorage.getItem('user')
+        if (user) {
+            user = JSON.parse(user)
+            const reservation = {
+                user: user._id,
+                from: state.from.value,
+                to: state.to.value,
+                train: state.train.value,
+                trainClass: state.trainClass.value,
+                time: state.time.value,
+                qty: state.qty,
+                date: state.date,
+                amount: state.amount,
+                discount: state.discount,
+                total: state.total
+            }
+            makeReservation(reservation)
+                .then(res => {
+                    toast.success("Successfully paid " + reservation.total)
+                    this.props.history.push('/reservations')
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+
+    }
+
     render() {
-        console.log(this.props)
         return (
             <Form style={{ padding: 20 }} onSubmit={(e) => this.handleSubmit(e)}>
                 <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -145,7 +197,8 @@ class Payment extends Component {
                         </Form.Row>
                     }
                     <Form.Row style={{ width: '75%' }}>
-                        {this.state.showErr && <p style={{ color: 'red' }}>{this.state.errMsg}</p>}
+                        {this.state.showPaymentErr && <p style={{ color: 'red' }}>{this.state.errMsg}</p>}
+                        {this.state.showValidateErr && <p style={{ color: 'red' }}>{this.state.validateErrMsg}</p>}
                     </Form.Row>
                     <Form.Row style={{ width: '75%' }}>
                         <Button variant="primary" type="submit">

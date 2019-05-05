@@ -32,6 +32,22 @@ export function schedules() {
     return callGet(baseUrl + '/railway/schedules/');
 }
 
+export function validateCard(body) {
+    return callPost(baseUrl + '/payment/card', body);
+}
+
+export function validatePhone(body) {
+    return callPost(baseUrl + '/payment/phone', body);
+}
+
+export function makeReservation(body) {
+    return callPost(baseUrl + '/railway/reservations', body);
+}
+
+export function getReservations(user) {
+    return callGet(baseUrl + '/railway/reservations/' + user);
+}
+
 const callGet = (url) => {
     return fetch(url).then(handleres);
 }
