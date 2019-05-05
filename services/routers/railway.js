@@ -90,4 +90,13 @@ router.get('/railway/reservations/:user', async (req, res) => {
     }
 });
 
+router.delete('/railway/reservations/:id', async (req, res) => {
+    try {
+        const result = await reservationModel.deleteOne({_id:req.params.id}).exec()
+        res.status(200).json(result)
+    } catch (err) {
+        res.status(500).json(err)
+    }
+});
+
 module.exports = router

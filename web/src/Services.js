@@ -48,6 +48,10 @@ export function getReservations(user) {
     return callGet(baseUrl + '/railway/reservations/' + user);
 }
 
+export function deleteReservation(id) {
+    return callDelete(baseUrl + '/railway/reservations/' + id);
+}
+
 const callGet = (url) => {
     return fetch(url).then(handleres);
 }
@@ -57,6 +61,12 @@ const callPost = (url, body) => {
         method: 'POST',
         body: JSON.stringify(body),
         headers: { "Content-Type": "application/json" }
+    }).then(handleres);
+}
+
+const callDelete = (url) => {
+    return fetch(url, {
+        method: 'DELETE'
     }).then(handleres);
 }
 
@@ -70,10 +80,5 @@ const handleres = (res) => {
         } else {
             throw res.json();
         }
-        // console.log(res)
-        // return Promise.reject(new Error(res))
-        //throw res.json();
-        //throw new Error(res.status + " : " + res.statusText);
-        //return Promise.reject("new Error(res fail)");
     }
 }

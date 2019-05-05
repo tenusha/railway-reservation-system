@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { Table, Row, Form, Col, Button } from 'react-bootstrap'
 import { validateCard, validatePhone, makeReservation } from '../Services'
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
 class Payment extends Component {
 
