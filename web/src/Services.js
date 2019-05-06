@@ -56,6 +56,10 @@ export function updateAccount(body, id) {
     return callPut(baseUrl + '/users/' + id, body)
 }
 
+export function contact(body) {
+    return callPost(baseUrl + '/railway/contact', body);
+}
+
 const callGet = (url) => {
     return fetch(url).then(handleres);
 }

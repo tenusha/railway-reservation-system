@@ -14,7 +14,7 @@ class Reservations extends Component {
     }
 
     componentDidMount() {
-        this.uppdateReservations()
+        this.updateReservations()
     }
 
     componentWillUpdate() {
@@ -24,7 +24,7 @@ class Reservations extends Component {
         }
     }
 
-    uppdateReservations = () => {
+    updateReservations = () => {
         var user = localStorage.getItem('user')
         if (!user) {
             this.props.history.push('/')
@@ -46,7 +46,7 @@ class Reservations extends Component {
             deleteReservation(id)
                 .then(res => {
                     toast.success("Successfully removed reservation " + id)
-                    this.uppdateReservations()
+                    this.updateReservations()
                 })
                 .catch(err => {
                     console.log(err)

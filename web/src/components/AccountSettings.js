@@ -65,6 +65,7 @@ class AccountSettings extends Component {
         event.preventDefault()
         event.stopPropagation()
     }
+    
     render() {
         return (
             <Row style={{ alignItems: 'center', justifyContent: 'center' }}>

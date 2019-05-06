@@ -7,6 +7,7 @@ const railway = require('./routers/railway')
 const payment = require('./routers/payment')
 const gov = require('./routers/gov')
 const user = require('./routers/user')
+const contact = require('./routers/contact')
 const mongoose = require('mongoose')
 
 mongoose.connect('mongodb://localhost/railway')
@@ -25,6 +26,7 @@ app.use(railway)
 app.use(payment)
 app.use(gov)
 app.use(user)
+app.use(contact)
 
 app.listen(3001, err => {
     if (err) {
