@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import 'react-datepicker/dist/react-datepicker.css'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify'
 
 import NavBar from './components/commons/NavBar'
 import Login from './components/Login'
@@ -95,10 +95,15 @@ class App extends Component {
           </Suspense>
         </Router>
 
+        <footer className="page-footer font-small" style={{ backgroundColor: 'black', color: 'white', marginTop:10 }}>
+          <div className="footer-copyright text-center py-3">© 2019 Copyright:
+            <a href="https://tenusha.wordpress.com"> tenusha.wordpress.com</a>
+          </div>
+        </footer>
+
         <ToastContainer
           autoClose={3000}
           position="bottom-right"
-        // hideProgressBar={true}
         />
       </>
     );
