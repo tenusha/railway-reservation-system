@@ -7,25 +7,24 @@ router.post('/register', async (req, res) => {
     const email = body.email
 
     var exist = ""
-    await UserModel.findOne({ email: email }, (err, val) => {
-        if (err) {
-            console.log(err);
-        } else {
-            exist = val
-        }
-    });
+    try {
+        await UserModel.findOne({ email: email }, (err, val) => {
+            if (err) {
+                console.log(err);
+            } else {
+                exist = val
+            }
+        });
 
-    if (exist) {
-        res.status(409).json({ exist: true })
-    } else {
-        try {
+        if (exist) {
+            res.status(409).json({ exist: true })
+        } else {
             var user = new UserModel(body)
             var result = await user.save()
             res.status(200).json(result)
         }
-        catch (err) {
-            res.status(500).json(err)
-        }
+    } catch (err) {
+        res.status(500).json(err)
     }
 });
 

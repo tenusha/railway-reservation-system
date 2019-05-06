@@ -13,6 +13,7 @@ import Home from './components/Home'
 import Contact from './components/Contact'
 import Reservations from './components/Reservations'
 import Payment from './components/Payment'
+import AccountSettings from './components/AccountSettings'
 
 class App extends Component {
   constructor(props, context) {
@@ -89,6 +90,7 @@ class App extends Component {
               <Route path="/contact" component={Contact} />
               <Route path="/reservations" component={Reservations} />
               <Route path="/payment" component={Payment} />
+              <Route path="/account" component={AccountSettings} />
             </Switch>
           </Suspense>
         </Router>

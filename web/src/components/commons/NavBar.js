@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 
 import { Navbar, Nav, NavDropdown, Image, Row } from 'react-bootstrap'
-import { toast } from 'react-toastify'
 
 class NavBar extends Component {
 
     render() {
         var user = localStorage.getItem('user')
-        if(user){
+        if (user) {
             user = JSON.parse(user)
         }
         return (
@@ -23,7 +22,7 @@ class NavBar extends Component {
                                 <>
                                     <Nav.Link href="/reservations" >My Reservations</Nav.Link>
                                     <NavDropdown title={user.fname} id="nav-dropdown" alignRight>
-                                        <NavDropdown.Item onClick={() => toast.error("Not Supported Yet !")}>Account Settings</NavDropdown.Item>
+                                        <NavDropdown.Item href="/account">Account Settings</NavDropdown.Item>
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item onClick={this.props.logout}>Sign out</NavDropdown.Item>
                                     </NavDropdown>

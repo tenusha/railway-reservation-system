@@ -28,6 +28,10 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
+    },
+    discount: {
+        type: Boolean,
+        required: true
     }
 })
 

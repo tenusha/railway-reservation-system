@@ -52,6 +52,10 @@ export function deleteReservation(id) {
     return callDelete(baseUrl + '/railway/reservations/' + id);
 }
 
+export function updateAccount(body, id) {
+    return callPut(baseUrl + '/users/' + id, body)
+}
+
 const callGet = (url) => {
     return fetch(url).then(handleres);
 }
@@ -59,6 +63,14 @@ const callGet = (url) => {
 const callPost = (url, body) => {
     return fetch(url, {
         method: 'POST',
+        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" }
+    }).then(handleres);
+}
+
+const callPut = (url, body) => {
+    return fetch(url, {
+        method: 'PUT',
         body: JSON.stringify(body),
         headers: { "Content-Type": "application/json" }
     }).then(handleres);

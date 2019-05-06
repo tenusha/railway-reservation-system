@@ -55,7 +55,6 @@ class Reservations extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
                 {this.state.reservations.length <= 0 &&

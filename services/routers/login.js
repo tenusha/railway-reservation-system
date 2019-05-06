@@ -7,18 +7,21 @@ router.post('/login', (req, res) => {
     const username = body.username
     const password = body.password
 
-    UserModel.findOne({ email: username }, (err, val) => {
-        if (err) {
-            console.log(err);
-        } else {
-            var user = val
-            if (user && user.password && user.password === password) {
-                res.status(200).json(user)
+    try {
+        UserModel.findOne({ email: username, password: password }, (err, val) => {
+            if (err) {
+                console.log(err);
             } else {
-                res.status(401).json("unauthorized")
+                if (val) {
+                    res.status(200).json(val)
+                } else {
+                    res.status(401).json("unauthorized")
+                }
             }
-        }
-    });
+        });
+    } catch (err) {
+        res.status(500).json(err)
+    }
 });
 
 module.exports = router
