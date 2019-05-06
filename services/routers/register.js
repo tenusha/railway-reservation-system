@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const UserModel = require('../model/user')
+const client = require('../client')
 
 router.post('/register', async (req, res) => {
     const body = req.body
@@ -19,7 +20,8 @@ router.post('/register', async (req, res) => {
         if (exist) {
             res.status(409).json({ exist: true })
         } else {
-            var user = new UserModel(body)
+            const discount = await client.validateNIC(body.nic)
+            var user = new UserModel({ ...body, discount: discount })
             var result = await user.save()
             res.status(200).json(result)
         }

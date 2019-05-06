@@ -52,7 +52,6 @@ class AccountSettings extends Component {
     handleSubmit = event => {
         const form = event.currentTarget
         const id = JSON.parse(localStorage.getItem('user'))._id
-        console.log(id)
         if (form.checkValidity() === true) {
             updateAccount(this.state, id)
                 .then(res => {

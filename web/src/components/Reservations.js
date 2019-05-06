@@ -58,7 +58,7 @@ class Reservations extends Component {
         return (
             <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
                 {this.state.reservations.length <= 0 &&
-                    <Row style={{ width: '80%', padding: 10 }}>
+                    <Row style={{ width: '75%', padding: 10 }}>
                         <Col>
                             <Card>
                                 <Card.Body>You don't have any reservations yet!!!</Card.Body>
@@ -69,7 +69,7 @@ class Reservations extends Component {
                 {this.state.reservations.length > 0 &&
                     this.state.reservations.map((reservation, i) => {
                         return (
-                            <Row style={{ width: '80%' }} key={i}>
+                            <Row style={{ width: '75%' }} key={i}>
                                 <Col>
                                     <Card style={{ padding: 10, marginTop: 10 }}>
                                         <Row>
