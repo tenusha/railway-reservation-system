@@ -26,6 +26,10 @@ class Payment extends Component {
         if (this.props.location) {
             this.setState({ ...this.props.location.state })
         }
+        var user = localStorage.getItem('user')
+        if (user) {
+            this.setState({ phoneNo: JSON.parse(user).phone })
+        }
     }
 
     componentWillUpdate() {
