@@ -82,7 +82,7 @@ class Register extends Component {
                         </Form.Group>
                         <Form.Group controlId="formGridNIC">
                             <Form.Label>NIC</Form.Label>
-                            <Form.Control required type="username" placeholder="Enter NIC" onChange={this.handleChange('nic')} />
+                            <Form.Control type="username" placeholder="Enter NIC (Optional)" onChange={this.handleChange('nic')} />
                         </Form.Group>
                         <Form.Group controlId="controlTextarea1">
                             <Form.Label>Address</Form.Label>
