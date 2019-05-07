@@ -135,6 +135,9 @@ class Home extends Component {
         return (
             <Form style={{ padding: 20 }} onSubmit={(e) => this.handleSubmit(e)}>
                 <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <Form.Row style={{ width: '75%', borderBottom: '1px solid rgb(200,200,200)', marginBottom:20 }}>
+                        <h4>Book Train Tickets</h4>
+                    </Form.Row>
                     <Form.Row style={{ width: '75%' }}>
                         <Form.Group as={Col} controlId="from">
                             <Form.Label>From</Form.Label>

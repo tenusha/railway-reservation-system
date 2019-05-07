@@ -27,6 +27,28 @@
   display: block;
 }
 
+body {
+  height: 100%;
+  position: relative;
+ }
+
+ * {
+  box-sizing: border-box;
+ }
+ 
+ *:before,
+ *:after {
+  box-sizing: border-box;
+ }
+
+ .main-container {
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 80px; /* height of your footer */
+ }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

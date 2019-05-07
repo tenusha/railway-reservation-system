@@ -56,7 +56,7 @@ class Reservations extends Component {
 
     render() {
         return (
-            <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
+            <Row style={{ alignItems: 'center', justifyContent: 'center', width:'100%' }}>
                 {this.state.reservations.length <= 0 &&
                     <Row style={{ width: '75%', padding: 10 }}>
                         <Col>

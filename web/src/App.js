@@ -14,6 +14,7 @@ import Contact from './components/Contact'
 import Reservations from './components/Reservations'
 import Payment from './components/Payment'
 import AccountSettings from './components/AccountSettings'
+import Footer from './components/Footer'
 
 class App extends Component {
   constructor(props, context) {
@@ -62,44 +63,42 @@ class App extends Component {
 
     return (
       <>
-        <NavBar
-          handleLoginShow={this.handleLoginShow}
-          handleRegisterShow={this.handleRegisterShow}
-          logout={this.handleLogout}
-          {...this.state}
-        />
+        <div className="main-container">
+          <NavBar
+            handleLoginShow={this.handleLoginShow}
+            handleRegisterShow={this.handleRegisterShow}
+            logout={this.handleLogout}
+            {...this.state}
+          />
 
-        <Login
-          showLogin={this.state.showLogin}
-          handleShow={this.handleLoginShow}
-          handleClose={this.handleLoginClose}
-          handleRegisterShow={this.handleRegisterShow}
-        />
+          <Login
+            showLogin={this.state.showLogin}
+            handleShow={this.handleLoginShow}
+            handleClose={this.handleLoginClose}
+            handleRegisterShow={this.handleRegisterShow}
+          />
 
-        <Register
-          showRegister={this.state.showRegister}
-          handleShow={this.handleRegisterShow}
-          handleClose={this.handleRegisterClose}
-          handleLoginShow={this.handleLoginShow}
-        />
+          <Register
+            showRegister={this.state.showRegister}
+            handleShow={this.handleRegisterShow}
+            handleClose={this.handleRegisterClose}
+            handleLoginShow={this.handleLoginShow}
+          />
 
-        <Router>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/contact" component={Contact} />
-              <Route path="/reservations" component={Reservations} />
-              <Route path="/payment" component={Payment} />
-              <Route path="/account" component={AccountSettings} />
-            </Switch>
-          </Suspense>
-        </Router>
+          <Router>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/contact" component={Contact} />
+                <Route path="/reservations" component={Reservations} />
+                <Route path="/payment" component={Payment} />
+                <Route path="/account" component={AccountSettings} />
+              </Switch>
+            </Suspense>
+          </Router>
+        </div>
 
-        <footer className="page-footer font-small" style={{ backgroundColor: 'black', color: 'white', marginTop:10 }}>
-          <div className="footer-copyright text-center py-3">© 2019 Copyright:
-            <a href="https://tenusha.wordpress.com"> tenusha.wordpress.com</a>
-          </div>
-        </footer>
+        <Footer />
 
         <ToastContainer
           autoClose={3000}
