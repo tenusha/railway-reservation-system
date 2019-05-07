@@ -135,7 +135,7 @@ class Home extends Component {
         return (
             <Form style={{ padding: 20 }} onSubmit={(e) => this.handleSubmit(e)}>
                 <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <Form.Row style={{ width: '75%', borderBottom: '1px solid rgb(200,200,200)', marginBottom:20 }}>
+                    <Form.Row style={{ width: '75%', borderBottom: '1px solid rgb(200,200,200)', marginBottom: 20 }}>
                         <h4>Book Train Tickets</h4>
                     </Form.Row>
                     <Form.Row style={{ width: '75%' }}>
@@ -183,24 +183,18 @@ class Home extends Component {
                     <Form.Row style={{ width: '75%', paddingLeft: 5, align: 'right' }}>
                         {this.state.amount &&
                             <Table striped bordered hover size="sm">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>price</th>
-                                    </tr>
-                                </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Amount</td>
-                                        <td>{this.state.amount}</td>
+                                        <td align='right'>Amount</td>
+                                        <td align='right'>{this.state.amount} LKR</td>
                                     </tr>
                                     <tr>
-                                        <td>Discount</td>
-                                        <td>{this.state.discount}</td>
+                                        <td align='right'>Discount</td>
+                                        <td align='right'>{this.state.discount} LKR</td>
                                     </tr>
                                     <tr>
-                                        <td>Total</td>
-                                        <td>{this.state.total}</td>
+                                        <td align='right'>Total</td>
+                                        <td align='right'>{this.state.total} LKR</td>
                                     </tr>
                                 </tbody>
                             </Table>

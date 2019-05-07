@@ -45,6 +45,15 @@ const reservationSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
+    card:{
+        type: String
+    },
+    phone:{
+        type: String
+    },
+    email:{
+        type: String
+    }
 })
 
 const reservation = module.exports = mongoose.model('Reservation', reservationSchema)
