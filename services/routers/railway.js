@@ -64,13 +64,14 @@ router.get('/railway/schedules', async (req, res) => {
 
 router.post('/railway/reservations', async (req, res) => {
     try {
-
-        var reservation = new reservationModel(req.body)
+        const body = req.body
+        var reservation = new reservationModel(body)
         var result = await reservation.save()
-        if (req.body.phone) {
-            client.sendTextMessage({ ...req.body, reservationID: result._id })
-        } else if (req.body.card) {
-            client.sendEmail({ ...req.body, reservationID: result._id })
+        if (body.phone) {
+            client.sendTextMessage({ ...body, reservationID: result._id })
+        } else if (body.card) {
+            const html = '<h2><u>Reservation Slip</u></h2><p>Reference No : <b> ' + result._id + ' </b><br><br>From <b> ' + body.from + ' </b> to <b> ' + body.to + ' </b><br>' + 'Date :<b> ' + body.date + ' </b> Time :<b> ' + body.time + ' </b><br>Train : <b>' + body.train + ' </b> Class: <b> ' + body.trainClass + ' </b><br>Quantity : <b> ' + body.qty + ' </b></p><p>Total : <b> ' + body.total + ' LKR</b></p> '
+            client.sendEmail({ ...body, html: html, subject: 'Railway e-Ticket' })
         }
         res.status(200).json(result)
     }

@@ -15,21 +15,22 @@ module.exports = {
     },
 
     sendEmail: async function (body) {
-        var transporter = nodemailer.createTransport({
-            service: 'gmail',
+
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true,
             auth: {
                 user: 'sl.railway.e.ticketing@gmail.com',
                 pass: 'railway@123'
             }
         });
 
-        const html = '<h2><u>Reservation Slip</u></h2><p>Reference No : <b> ' + body.reservationID + ' </b><br><br>From <b> ' + body.from + ' </b> to <b> ' + body.to + ' </b><br>' + 'Date :<b> ' + body.date + ' </b> Time :<b> ' + body.time + ' </b><br>Train : <b>' + body.train + ' </b> Class: <b> ' + body.trainClass + ' </b><br>Quantity : <b> ' + body.qty + ' </b></p><p>Total : <b> ' + body.total + ' LKR</b></p> '
-        console.log(html)
         var mailOptions = {
             from: '"Sri Lanka Railways" sl.railway.e.ticketing@gmail.com',
             to: body.email,
-            subject: 'Railway e-Ticket',
-            html: html
+            subject: body.subject,
+            html: body.html
         };
 
         transporter.sendMail(mailOptions, function (error, info) {
