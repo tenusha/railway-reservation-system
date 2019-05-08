@@ -1,4 +1,6 @@
-const baseUrl = "http://localhost:3001"
+import config from './config.json'
+
+const baseUrl = config.baseUrl
 
 export function login(body) {
     return callPost(baseUrl + '/login', body);

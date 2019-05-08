@@ -60,7 +60,6 @@ class Home extends Component {
 
     handleChange = type => selectedOption => {
         this.setState({ [type]: selectedOption }, () => {
-            console.log(this.state)
             this.calculateFair()
         });
         if (type === 'from') {
@@ -116,7 +115,6 @@ class Home extends Component {
             alert("Please Sign In Before Make a Reservation!!!")
             this.props.history.push('/')
         } else if (state.from && state.to && state.train && state.trainClass && state.time && state.qty && state.date) {
-            console.log("submit")
             this.props.history.push("/payment", { ...this.state })
         } else {
             this.setState({ showErr: true })

@@ -1,9 +1,12 @@
 const fetch = require("node-fetch")
 const nodemailer = require('nodemailer')
+const config = require('./config.json')
+
+const twilio = require('twilio')(config.messageClient.accountSid, config.messageClient.authToken);
 
 module.exports = {
     validateNIC: function (nic) {
-        return fetch('http://localhost:3001/gov/employee/' + nic)
+        return fetch(config.govAPI + nic)
             .then(handleErrors)
             .then(res => res.json())
             .then(data => {
@@ -16,18 +19,17 @@ module.exports = {
 
     sendEmail: async function (body) {
 
+        const emailConfig = config.emailClient
+
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
+            host: emailConfig.host,
             port: 465,
             secure: true,
-            auth: {
-                user: 'sl.railway.e.ticketing@gmail.com',
-                pass: 'railway@123'
-            }
+            auth: emailConfig.auth
         });
 
         var mailOptions = {
-            from: '"Sri Lanka Railways" sl.railway.e.ticketing@gmail.com',
+            from: '"Sri Lanka Railways"' + emailConfig.email,
             to: body.email,
             subject: body.subject,
             html: body.html
@@ -43,9 +45,6 @@ module.exports = {
     },
 
     sendTextMessage: async function (body) {
-        const accountSid = 'AC86b7448c3ed5e78b18f44d5e84fbdcb1';
-        const authToken = 'fee993da9d4cafa918929607a8b37827';
-        const twilio = require('twilio')(accountSid, authToken);
         var to = body.phone
         if (to.startsWith("0")) {
             to = to.replace("0", "+94")
@@ -53,7 +52,7 @@ module.exports = {
         twilio.messages
             .create({
                 body: "Sri Lanka Railway - Reservation Slip \n\n Reference No : " + body.reservationID + " \n\n From " + body.from + " to " + body.to + " \n Date : " + body.date + " \n Time : " + body.time + " \n Train : " + body.train + " \n Class: " + body.trainClass + " \n Quantity : " + body.qty + " \n Total : " + body.total + " LKR",
-                from: '+18504040553',
+                from: config.messageClient.phoneNo,
                 to: to
             })
             .then(message => console.log(message.sid))

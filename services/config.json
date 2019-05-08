@@ -1,0 +1,16 @@
+{
+    "govAPI": "http://localhost:3001/gov/employee/",
+    "emailClient": {
+        "host": "smtp.gmail.com",
+        "email": "sl.railway.e.ticketing@gmail.com",
+        "auth": {
+            "user": "sl.railway.e.ticketing@gmail.com",
+            "pass": "railway@123"
+        }
+    },
+    "messageClient": {
+        "accountSid": "AC86b7448c3ed5e78b18f44d5e84fbdcb1",
+        "authToken": "fee993da9d4cafa918929607a8b37827",
+        "phoneNo": "+18504040553"
+    }
+}
