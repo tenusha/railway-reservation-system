@@ -40,10 +40,8 @@ class Login extends Component {
                     this.props.handleClose()
                 })
                 .catch(err => {
-                    err.then(e => {
-                        console.log(e)
-                        this.setState({ modalShowErr: true })
-                    })                    
+                    console.log(err)
+                    this.setState({ modalShowErr: true })
                 })
         }
         event.preventDefault()
