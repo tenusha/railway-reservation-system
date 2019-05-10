@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { Modal, Button, Form, Col } from 'react-bootstrap'
 import { register } from '../Services'
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
 class Register extends Component {
 
@@ -39,12 +39,16 @@ class Register extends Component {
                     this.loginClick()
                 })
                 .catch(err => {
-                    err.then(e => {
-                        toast.error("Unable to register the new user")
-                        if(e.exist){
-                            this.setState({ modalShowErr: true })
-                        }
-                    })
+                    if (err.then && typeof err.then === 'function') {
+                        err.then(e => {
+                            toast.error("Unable to register the new user")
+                            if (e.exist) {
+                                this.setState({ modalShowErr: true })
+                            }
+                        })
+                    } else {
+                        console.log(err)
+                    }
                 })
         }
         // this.setState({ validated: true }) 
