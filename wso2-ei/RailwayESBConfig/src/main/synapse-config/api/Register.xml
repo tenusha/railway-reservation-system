@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/register" name="Register" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="OPTIONS POST" protocol="http">
+        <inSequence>
+            <send>
+                <endpoint key="RegisterEndpoint"/>
+            </send>
+        </inSequence>
+        <outSequence>
+            <respond/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+</api>

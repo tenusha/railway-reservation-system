@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="LoginEndpoint" groupId="com.sliit.se.ds.railway.esb.config.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/LoginEndpoint.xml</file>
+    </artifact>
+    <artifact name="Login" groupId="com.sliit.se.ds.railway.esb.config.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/Login.xml</file>
+    </artifact>
+    <artifact name="CardPaymentEndpoint" groupId="com.sliit.se.ds.railway.esb.config.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/CardPaymentEndpoint.xml</file>
+    </artifact>
+    <artifact name="MobilePaymentEndpoint" groupId="com.sliit.se.ds.railway.esb.config.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/MobilePaymentEndpoint.xml</file>
+    </artifact>
+    <artifact name="Payment" groupId="com.sliit.se.ds.railway.esb.config.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/Payment.xml</file>
+    </artifact>
+    <artifact name="RailwayEndpoint" groupId="com.sliit.se.ds.railway.esb.config.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/RailwayEndpoint.xml</file>
+    </artifact>
+    <artifact name="RegisterEndpoint" groupId="com.sliit.se.ds.railway.esb.config.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/RegisterEndpoint.xml</file>
+    </artifact>
+    <artifact name="UsersEndpoint" groupId="com.sliit.se.ds.railway.esb.config.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/UsersEndpoint.xml</file>
+    </artifact>
+    <artifact name="Railway" groupId="com.sliit.se.ds.railway.esb.config.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/Railway.xml</file>
+    </artifact>
+    <artifact name="Users" groupId="com.sliit.se.ds.railway.esb.config.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/Users.xml</file>
+    </artifact>
+    <artifact name="Register" groupId="com.sliit.se.ds.railway.esb.config.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/Register.xml</file>
+    </artifact>
+</artifacts>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/payment" name="Payment" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="OPTIONS POST" protocol="http" uri-template="/{method}">
+        <inSequence>
+            <property action="remove" name="REST_URL_POSTFIX" scope="axis2"/>
+            <filter regex="card" source="get-property('uri.var.method')">
+                <then>
+                    <log>
+                        <property expression="fn:concat('Payment method - ',get-property('uri.var.method'))" name="method"/>
+                    </log>
+                    <send>
+                        <endpoint key="CardPaymentEndpoint"/>
+                    </send>
+                </then>
+                <else>
+                    <filter regex="phone" source="get-property('uri.var.method')">
+                        <then>
+                            <log>
+                                <property expression="fn:concat('Payment method - ',get-property('uri.var.method'))" name="method"/>
+                            </log>
+                            <send>
+                                <endpoint key="MobilePaymentEndpoint"/>
+                            </send>
+                        </then>
+                        <else/>
+                    </filter>
+                </else>
+            </filter>
+        </inSequence>
+        <outSequence>
+            <respond/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+</api>

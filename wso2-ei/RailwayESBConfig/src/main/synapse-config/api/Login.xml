@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/login" name="Login" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="OPTIONS POST" protocol="http">
+        <inSequence>
+            <send>
+                <endpoint key="LoginEndpoint"/>
+            </send>
+        </inSequence>
+        <outSequence>
+            <respond/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+</api>

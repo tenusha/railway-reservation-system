@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/users" name="Users" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="DELETE OPTIONS POST PUT GET" protocol="http" uri-template="/{id}">
+        <inSequence>
+            <log>
+                <property expression="fn:concat('User ID - ',get-property('uri.var.id'))" name="text"/>
+            </log>
+            <send>
+                <endpoint key="UsersEndpoint"/>
+            </send>
+        </inSequence>
+        <outSequence>
+            <respond/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+</api>
