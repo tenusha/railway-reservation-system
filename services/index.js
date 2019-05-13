@@ -10,7 +10,10 @@ const user = require('./routers/user')
 const contact = require('./routers/contact')
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/railway')
+mongoose.connect('mongodb://localhost/railway', function (err) {
+    if (err) throw err
+    console.log('mongo db connected')
+}).catch(err => console.log(err))
 
 app.use(express.json());
 app.use(function (req, res, next) {
