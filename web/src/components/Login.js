@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import { Modal, Button, Form, Image, Row } from 'react-bootstrap'
 import { login } from '../Services'
+import { getHash } from './commons/Functions'
 
 class Login extends Component {
 
@@ -34,7 +35,7 @@ class Login extends Component {
         const form = event.currentTarget
 
         if (form.checkValidity() === true) {
-            login({ username: this.state.username, password: this.state.password })
+            login({ username: this.state.username, password: getHash(this.state.password) })
                 .then(res => {
                     localStorage.setItem('user', JSON.stringify(res))
                     this.props.handleClose()

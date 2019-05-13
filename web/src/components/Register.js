@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Modal, Button, Form, Col } from 'react-bootstrap'
 import { register } from '../Services'
 import { toast } from 'react-toastify'
+import { getHash } from './commons/Functions'
 
 class Register extends Component {
 
@@ -33,7 +34,8 @@ class Register extends Component {
         const form = event.currentTarget
 
         if (form.checkValidity() === true) {
-            register(this.state)
+            var body = { ...this.state, password: getHash(this.state.password) }
+            register(body)
                 .then(res => {
                     toast.success("Account Created Please Sign In")
                     this.loginClick()

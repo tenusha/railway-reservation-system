@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Col, Button, Form, Card, Row } from 'react-bootstrap'
 import { updateAccount } from '../Services'
 import { toast } from 'react-toastify'
+import { getHash } from './commons/Functions'
 
 class AccountSettings extends Component {
 
@@ -27,7 +28,7 @@ class AccountSettings extends Component {
                 fname: user.fname,
                 lname: user.lname,
                 phone: user.phone,
-                nic: user.nic,
+                nic: user.nic || '',
                 email: user.email,
                 address: user.address
             })
@@ -53,7 +54,11 @@ class AccountSettings extends Component {
         const form = event.currentTarget
         const id = JSON.parse(localStorage.getItem('user'))._id
         if (form.checkValidity() === true) {
-            updateAccount(this.state, id)
+            var body = { ...this.state }
+            if (this.state.password) {
+                body = { ...body, password: getHash(this.state.password) }
+            }
+            updateAccount(body, id)
                 .then(res => {
                     toast.success("Account updated!!!")
                     localStorage.setItem('user', JSON.stringify(res))
@@ -65,7 +70,7 @@ class AccountSettings extends Component {
         event.preventDefault()
         event.stopPropagation()
     }
-    
+
     render() {
         return (
             <Row style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -91,7 +96,7 @@ class AccountSettings extends Component {
                                     </Form.Group>
                                     <Form.Group as={Col} controlId="formGridNIC">
                                         <Form.Label>NIC</Form.Label>
-                                        <Form.Control required type="username" placeholder="Enter NIC" onChange={this.handleChange('nic')} value={this.state.nic} />
+                                        <Form.Control type="username" placeholder="Enter NIC" onChange={this.handleChange('nic')} value={this.state.nic} />
                                     </Form.Group>
                                 </Form.Row>
                                 <Form.Group controlId="controlTextarea1">

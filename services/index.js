@@ -10,7 +10,7 @@ const user = require('./routers/user')
 const contact = require('./routers/contact')
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/railway', function (err) {
+mongoose.connect('mongodb://localhost/railway', { useNewUrlParser: true }, function (err) {
     if (err) throw err
     console.log('mongo db connected')
 }).catch(err => console.log(err))
