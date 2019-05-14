@@ -20,3 +20,65 @@ Figure_1: Email sent using “nodemailer”
 <img src="https://i.ibb.co/Qchs3hZ/Screenshot-20190513-100746.png" alt="Screenshot-20190513-100746" border="0">
 Figure_2: Text message sent using “Twilio” 
 <p></p><br />
+
+## High Level Architectural Diagrams 
+ 
+Front end of the web application is developed using React.js, backend is developed using Node.js and Express.js, MongoDB database is connected to the back end and the front end and the back end communicates with WSO2 EI, which is a comprehensive integration solution that enables communication among various, disparate applications. 
+ 
+### Component Diagram 
+<p></p><br />
+
+<img src="https://i.ibb.co/ZL3rYsR/Capture27.png" alt="Capture27" border="0">
+Figure_3: component diagram
+<p></p><br />
+
+### Overall System Architecture
+<p></p><br />
+
+<img src="https://i.ibb.co/GC5MpcN/Capture28.png" alt="Capture28" border="0">
+Figure_4: overall system architecture
+<p></p><br />
+
+## Rest APIs
+
+### Railway 
+ 
+##### A. /railway/routes 
+ 
+This is a GET endpoint which returns an array of routes which includes route name and the array of stations in that route. 
+ 
+B. /railway/route/{id} 
+ 
+This is a GET endpoint which has a path parameter of route id. It returns all the stations for a given route id. 
+ 
+C. /railway/trains 
+ 
+This is a GET endpoint which returns array of all the trains in the database. 
+ 
+D. /railway/trains/{route} 
+ 
+This is a GET endpoint which has a path parameter of route id. It returns array of all the trains which are running on the specified route. 
+ 
+E. /railway/classes 
+ 
+This is a GET endpoint which returns array of all the train classes available in the database. 
+ 
+F. /railway/schedules 
+ 
+This is a GET endpoint which returns array of all the train schedules available in the database. 
+
+G. /railway/reservations 
+ 
+This endpoint support both GET and POST requests. If it is a GET request it returns all the reservations in the database. If it is a POST request it creates a new reservation according to the data in request body and save it in the database. After the new reservation saving it send email or a text message (according to the payment method, card payment - email, mobile payment - text message). Sample email and text messages are shown in Fig 1 and Fig 2 in introduction section. 
+ 
+H. /railway/reservations/{user} 
+ 
+This is a GET endpoint which contains path parameter of user id. It returns an array of all the reservations of the specified user. 
+ 
+I. /railway/reservations/{id} 
+ 
+This is a DELETE endpoint, which delete the specified reservation (reservation id) in the request path parameter. 
+ 
+J. /railway/contact 
+ 
+This is a POST endpoint, which used to process customer support requests. In this service it saves the support information given by the customer (email, phone, message, etc.) and send the confirmation details in email to both railway customer support team and to the customer. 
