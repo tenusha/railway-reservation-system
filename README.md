@@ -11,11 +11,12 @@ In the web application booking page, when user select a start location (which co
 If the user is a government employee, they can have special discounts in this web application. Once user gave their NIC when registering, that NIC is validated using government web service to ensure that user is eligible to have discounts. 
  
 Following are sample text emails and text messages sent using previously mentioned services,
+<p></p><br />
 
 <img src="https://i.ibb.co/jWRZsx6/Capture1.png" alt="Capture1" border="0">
 Figure_1: Email sent using “nodemailer” 
 <p></p><br />
 
-<img src="https://i.ibb.co/zF4xtxG/Screenshot-20190513-100746.png" alt="Screenshot-20190513-100746" border="0">
+<img src="https://i.ibb.co/kgDxGKg/Screenshot-20190513-100746.png" alt="Screenshot-20190513-100746" border="0">
 Figure_2: Text message sent using “Twilio” 
 <p></p><br />
