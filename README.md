@@ -17,6 +17,6 @@ Following are sample text emails and text messages sent using previously mention
 Figure_1: Email sent using “nodemailer” 
 <p></p><br />
 
-<img src="https://i.ibb.co/kgDxGKg/Screenshot-20190513-100746.png" alt="Screenshot-20190513-100746" border="0">
+<img src="https://i.ibb.co/Qchs3hZ/Screenshot-20190513-100746.png" alt="Screenshot-20190513-100746" border="0">
 Figure_2: Text message sent using “Twilio” 
 <p></p><br />
