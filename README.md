@@ -125,3 +125,53 @@ This is a dummy government service which used to validate whether the user is a 
 #### A. /gov/employee/{nic} 
  
 This is a GET endpoint, which accept the NIC number as a path parameter. It checks whether there is any employee with that NIC and validate. The validation status will be sent back in the response.
+
+## Workflow 
+ 
+Following system workflow diagrams and system workflow scenario will help to get a better understanding on how the system works. 
+
+### System Workflow 
+
+<img src="https://i.ibb.co/XkMzjyq/Capture29.png" alt="Capture29" border="0">
+Figure_6: user make reservation  
+<p></p><br />
+
+<img src="https://i.ibb.co/cCM4vnY/Capture30.png" alt="Capture30" border="0">
+Figure_7: user update profile data  
+<p></p><br />
+
+<img src="https://i.ibb.co/X4zGdfD/Capture31.png" alt="Capture31" border="0">
+Figure_8: user make customer support request  
+<p></p><br />
+
+### System Workflow Scenario 
+
+The figure below shows the landing page of the web application. Any user can fill the reservation details in the form and view the cost of tickets, but if user want to make a reservation user should login first. 
+<p></p><br />
+
+<img src="https://i.ibb.co/nbPDk3m/Capture5.png" alt="Capture5" border="0">
+Figure_9: landing page   
+<p></p><br />
+
+Firstly, user have to fill the “From” station, then the “To” stations are filtered according to the route of the selected “From” station. Once user filled the form, they can view the cost of tickets. 
+<p></p><br />
+
+<img src="https://i.ibb.co/25mHT50/Capture6.png" alt="Capture6" border="0">
+Figure_10: user enter booking details   
+<p></p><br />
+
+If user need to make a reservation, user need to login first. If user is not registered before, they can register their account first. 
+ 
+Users can click join now link in navigation bar and enter their details in the modal shown after clicking the link. NIC field is optional and if you enter a NIC it will be validated using government service to ensure that user is eligible to discounts. 
+<p></p><br />
+
+<img src="https://i.ibb.co/njn612Y/Capture7.png" alt="Capture7" border="0">
+Figure_11: register modal 
+<p></p><br />
+
+Once user has successfully register user can login to the system and make reservations. 
+<p></p><br />
+
+<img src="https://i.ibb.co/FXQbYMM/Capture8.png" alt="Capture8" border="0">
+Figure_12:login modal   
+<p></p><br />
