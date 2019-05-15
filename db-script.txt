@@ -1,0 +1,131 @@
+user railway;
+
+db.routes.insert({name:"main-line",route:[{name:"Badulla", fair:0},
+{name:"Hali Ela", fair:20},
+{name:"Demodara Loop (Tunnel No. 42)", fair:40},
+{name:"Demodara", fair:60},
+{name:"Ella", fair:80},
+{name:"Bandarawela", fair:100},
+{name:"Diyatalawa", fair:120},
+{name:"Haputale", fair:140},
+{name:"Pattipola", fair:160},
+{name:"Ambewela", fair:180},
+{name:"Horton Plains National Park", fair:200},
+{name:"Nanu Oya", fair:220},
+{name:"Thalawakele", fair:240},
+{name:"Kotagala", fair:260},
+{name:"Hatton", fair:280},
+{name:"Nawalapitiya", fair:300},
+{name:"Gampola", fair:320},
+{name:"Nanu Oya", fair:340},
+{name:"Peradeniya Junction", fair:360},
+{name:"Rambukkana", fair:380},
+{name:"Polgahawela Junction", fair:400} ,
+{name:"Ambepussa", fair:420},
+{name:"Gampaha", fair:440},
+{name:"Kelaniya", fair:460},
+{name:"Dematagoda", fair:480},		 
+{name:"Maradana", fair:490},
+{name:"Colombo Fort", fair:500}]});
+
+db.routes.insert({name:"matale-line",route:[{name:"Matale", fair:0},
+{name:"Thawalankoya", fair:20},
+{name:"Kohombiliwala", fair:40},
+{name:"Elwala", fair:80},
+{name:"Ukuwela", fair:100},
+{name:"Udaththawela", fair:120},
+{name:"Marakona", fair:140},
+{name:"Yatawara", fair:160},
+{name:"Wattegama", fair:180},
+{name:"Katugastota", fair:200},
+{name:"Asgiriya", fair:220},
+{name:"Kandy", fair:240}]});
+
+db.routes.insert({name:"puttalam-line",route:[{name:"Noor Nagar", fair:0},
+{name:"Puttalam", fair:20},
+{name:"Palavi", fair:60},
+{name:"Mundal", fair:80},
+{name:"Bangadeniya", fair:100},
+{name:"Chilaw", fair:120},
+{name:"Madampe", fair:140},
+{name:"Thummodara ", fair:160},
+{name:"Negombo", fair:180},
+{name:"Katunayake	", fair:200},	 
+{name:"Bandaranaike International Airport", fair:220},
+{name:"Katunayake South", fair:240},
+{name:"Seeduwa", fair:260},
+{name:"Ja-Ela", fair:280},
+{name:"Kandana", fair:300},
+{name:"Peralanda", fair:320}]});
+
+
+
+
+db.trains.insert({name:"Udarata Menike", route:"main-line"});
+db.trains.insert({name:"Podi Menike", route:"main-line"});
+db.trains.insert({name:"Tikiri Menike", route:"main-line"});
+db.trains.insert({name:"Senkadagala Menike", route:"main-line"});
+db.trains.insert({name:"Colombo - Badulla Night Mail Train", route:"main-line"});
+db.trains.insert({name:"Muthu Kumari", route:"puttalam-line"});
+db.trains.insert({name:"Bangadeniya", route:"puttalam-line"});
+db.trains.insert({name:"Express (A)", route:"matale-line"});
+db.trains.insert({name:"Express (B)", route:"matale-line"});
+
+
+
+
+db.classes.insert({name:"1st class", fairRatio:1.05})
+db.classes.insert({name:"2nd class", fairRatio:1.02})
+db.classes.insert({name:"3rd class", fairRatio:1})
+
+
+
+
+db.schedules.insert({time:"05.00 am"});
+db.schedules.insert({time:"06.00 am"});
+db.schedules.insert({time:"09.30 am"});
+db.schedules.insert({time:"10.00 am"});
+db.schedules.insert({time:"10.30 am"});
+db.schedules.insert({time:"11.00 am"});
+db.schedules.insert({time:"12.00 pm"});
+db.schedules.insert({time:"1.30 pm"});
+db.schedules.insert({time:"02.00 pm"});
+db.schedules.insert({time:"03.30 pm"});
+db.schedules.insert({time:"04.00 pm"});
+db.schedules.insert({time:"05.30 pm"});
+db.schedules.insert({time:"07.00 pm"});
+db.schedules.insert({time:"11.00 pm"});
+
+
+
+
+db.cards.insert({card:"1234123412341234", cvc:"123" ,exp:"12/12"});
+db.cards.insert({card:"1", cvc:"1" ,exp:"1"});
+
+
+
+
+db.phones.insert({phone:"0777296705", pin:"1234"});
+db.phones.insert({phone:"0776655707", pin:"1234"});
+
+
+
+
+db.employees.insert({"firstName":"Tenusha","lastName":"Guruge","nic":"123456789V","address":[{"street":"a","city":"b","state":"c"},{"street":"a1","city":"b1","state":"c1"}]});
+db.employees.insert({"firstName":"Ranmal","lastName":"Dewage","nic":"111111111V","address":[{"street":"a","city":"b","state":"c"},{"street":"a1","city":"b1","state":"c1"}]});
+db.employees.insert({"firstName":"Vimukthi","lastName":"Rajapaksha","nic":"222222222V","address":[{"street":"a","city":"b","state":"c"},{"street":"a1","city":"b1","state":"c1"}]});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

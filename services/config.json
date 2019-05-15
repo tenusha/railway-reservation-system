@@ -1,4 +1,5 @@
 {
+    "mongoDB": "mongodb://localhost/railway",
     "govAPI": "http://localhost:3001/gov/employee/",
     "emailClient": {
         "host": "smtp.gmail.com",

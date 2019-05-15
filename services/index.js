@@ -1,6 +1,7 @@
 'use strict'
 const express = require('express')
 const app = express()
+const config = require('./config.json')
 const login = require('./routers/login')
 const register = require('./routers/register')
 const railway = require('./routers/railway')
@@ -10,7 +11,7 @@ const user = require('./routers/user')
 const contact = require('./routers/contact')
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost/railway', { useNewUrlParser: true }, function (err) {
+mongoose.connect(config.mongoDB, { useNewUrlParser: true }, function (err) {
     if (err) throw err
     console.log('mongo db connected')
 }).catch(err => console.log(err))
