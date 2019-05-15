@@ -2,7 +2,7 @@
 
 1) creating the database
 	- The application require mongoDB as the database
-	- Run the mongoDB and execute the code in "db-script.txt"
+	- Run the mongoDB and execute the code in "db-script.txt". (copy the content and paste to mongo.exe cmd)
 	- "db-script.txt" file mainly contains railway routes, credit card and mobile phone details (user payment details validated with this data)
 	  and government employee data.
 
