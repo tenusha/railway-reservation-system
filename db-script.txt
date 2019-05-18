@@ -1,4 +1,4 @@
-user railway;
+use railway;
 
 db.routes.insert({name:"main-line",route:[{name:"Badulla", fair:0},
 {name:"Hali Ela", fair:20},
@@ -100,7 +100,7 @@ db.schedules.insert({time:"11.00 pm"});
 
 
 db.cards.insert({card:"1234123412341234", cvc:"123" ,exp:"12/12"});
-db.cards.insert({card:"1", cvc:"1" ,exp:"1"});
+db.cards.insert({card:"1111111111111111", cvc:"111" ,exp:"11/11"});
 
 
 
